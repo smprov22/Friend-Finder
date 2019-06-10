@@ -10,8 +10,9 @@
 </head>
 <body>
     <div class="container content">
-		<h1>Survey</h1>
-		<p>Take a quick survey to find your new Soccer BFF! If you strongly disagree with the statement, choose 1. If you strongly agree with the statement, select 5.</p>
+		<h1>Survey Questions</h1>
+        <p>Take a quick survey to find your new Soccer BFF! If you strongly disagree with the statement, choose 1. If you strongly agree with the statement, select 5.</p>
+        <hr>
 		<form>
 			<div class="form-group">
 				<input id="name" type="text" class="form-control" placeholder="Name (Required)">
@@ -141,11 +142,11 @@
             </div>
         </form>
         <div class="text-center">
-			<button id="submitBtn" type="submit" class="btn btn-success btn-lg">Submit</button>
+			<button id="submitBtn" type="submit" class="btn btn-primary btn-lg">Submit</button>
         </div>
         
         <!-- Modal after survey completion -->
-		<div id="bestFriendModal" class="modal fade" role="dialog">
+		<div id="newBFFModal" class="modal fade" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -163,5 +164,55 @@
 			</div>
 		</div>
     </div>        
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
+<script type="text/javascript">
+	$("#submitBtn").on("click", function(event) {
+        event.preventDefault();
+        //verify that user has entered all necessary information
+        var valid = true;
+       
+        if ($("#name").val() === "" || $("#photo").val() === "") {
+            valid = false
+        } else if ($("#question1").val() === "empty" || $("#question2").val() === "empty" || $("#question3").val() === "empty" || $("#question4").val() === "empty" || $("#question5").val() === "empty" || $("#question6").val() === "empty" || $("#question7").val() === "empty" || $("#question8").val() === "empty" || $("#question9").val() === "empty" || $("#question10").val() === "empty") {
+            valid = false;
+        }
+
+        if (valid === true) {
+            var newFriend = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                answers: [
+                    $("#question1").val(),
+                    $("#question2").val(),
+                    $("#question3").val(),
+                    $("#question4").val(),
+                    $("#question5").val(),
+                    $("#question6").val(),
+                    $("#question7").val(),
+                    $("#question8").val(),
+                    $("#question9").val(),
+                    $("#question10").val()
+                ]
+            };
+
+            var currentURL = window.location.origin;
+			// Ajax call for receiving response after POST req
+			$.post(currentURL + "/api/friends", newFriend, function(data) {
+				$("#bestFriend").text(data.name);
+				$("#bestFriendPhoto").attr("src", data.photo);
+                $("#newBFFModal").modal("toggle");
+            });
+        } 
+        else {
+			// If a required field is missing, show alert
+			alert("Survey is incomplete!");
+		}  
+    })  
+
+</script>
 </html>
