@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Friend Finder - Survey</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Soccer Friend Finder - Survey</title>
 </head>
 <body>
     <div class="container content">
 		<h1>Survey</h1>
-		<p>Take a quick survey to find your new BFF! If you strongly disagree with the statement, choose 1. If you strongly agree with the statement, select 5.</p>
+		<p>Take a quick survey to find your new Soccer BFF! If you strongly disagree with the statement, choose 1. If you strongly agree with the statement, select 5.</p>
 		<form>
 			<div class="form-group">
 				<input id="name" type="text" class="form-control" placeholder="Name (Required)">
@@ -18,7 +20,8 @@
 				<input id="photo" type="text" class="form-control" placeholder="Link to Profile Photo (Required)">
 			</div>
 			<div class="form-group">
-				<label for="question1">Question 1</label>
+                <h3>Question 1</h3>
+				<label for="question1">I am outgoing</label>
 				<select class="form-control" id="question1">
 					<option value="empty"></option>
 					<option value="1">1</option>
@@ -29,8 +32,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 2</label>
-				<select class="form-control" id="question1">
+                    <h3>Question 2</h3>
+				<label for="question2">I am athletic</label>
+				<select class="form-control" id="question2">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -40,8 +44,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 3</label>
-				<select class="form-control" id="question1">
+                <h3>Question 3</h3>
+				<label for="question3">I am a risk-taker</label>
+				<select class="form-control" id="question3">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -51,8 +56,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 4</label>
-				<select class="form-control" id="question1">
+                <h3>Question 4</h3>
+				<label for="question4">I am energetic</label>
+				<select class="form-control" id="question4">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -62,8 +68,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 5</label>
-				<select class="form-control" id="question1">
+                <h3>Question 5</h3>
+				<label for="question5">I am good at following directions</label>
+				<select class="form-control" id="question5">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -73,8 +80,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 6</label>
-				<select class="form-control" id="question1">
+                <h3>Question 6</h3>
+				<label for="question6">I am optimistic</label>
+				<select class="form-control" id="question6">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -84,8 +92,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 7</label>
-				<select class="form-control" id="question1">
+                <h3>Question 7</h3>
+				<label for="question7">I like attention</label>
+				<select class="form-control" id="question7">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -95,8 +104,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 8</label>
-				<select class="form-control" id="question1">
+                <h3>Question 8</h3>
+				<label for="question8">I am hard-working</label>
+				<select class="form-control" id="question8">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -106,8 +116,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 9</label>
-				<select class="form-control" id="question1">
+                <h3>Question 9</h3>
+				<label for="question9">I am creative</label>
+				<select class="form-control" id="question9">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -117,8 +128,9 @@
 				</select>
             </div>
             <div class="form-group">
-				<label for="question1">Question 10</label>
-				<select class="form-control" id="question1">
+                <h3>Question 10</h3>
+				<label for="question10">I am friendly</label>
+				<select class="form-control" id="question10">
 					<option value="empty"></option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -138,7 +150,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h3 class="modal-title">Your New BFF!</h1>
+						<h3 class="modal-title">Your New Soccer BFF!</h1>
 					</div>
 					<div class="modal-body">
 						<h2 id="bestFriend"></h2>
