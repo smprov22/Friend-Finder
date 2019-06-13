@@ -9,14 +9,18 @@
     <title>Soccer Friend Finder - Survey</title>
 	<style>
 		body {
-			background-color: rgb(38, 119, 96);
+			/* background-color: rgb(38, 119, 96); */
+			background-image: url("soccer-net.png");
+			background-attachment: fixed;
+			background-size: 100%;
 		}
 	
 		.container {
-			background-color: rgba(255, 255, 255, 0.6);
+			background-color: rgba(0, 0, 0, 0.6);
 			margin-top: 25px;
 			margin-bottom: 25px;
 			width: 60%;
+			color: white;
 		}
 
 		#submitBtn {
@@ -37,6 +41,34 @@
 			text-align: center;
 			width: 80%;
 			margin: 10px auto;
+			font-size: 17px;
+		}
+
+		.modal-body {
+			background-image: url("usa-soccer.jpg");
+			background-size: 100%;
+			/* margin: 10px auto; */
+		}
+
+		#bff{
+			color: white;
+			text-align: center;
+		}
+
+		#bffPhoto {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
+
+		.modal-header {
+			background-color: rgb(54, 74, 107);
+			color: white;
+		} 
+		
+		.modal-footer {
+			background-color: #364a6b;
+			color: white;
 		}
 	</style>
 
@@ -175,7 +207,7 @@
             </div>
         </form>
         <div class="text-center">
-			<button id="submitBtn" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newBFFModal">Submit</button>
+			<button id="submitBtn" type="submit" class="btn btn-light btn-lg" data-toggle="modal" data-target="#newBFFModal">Submit</button>
         </div>
         
 		<div class="modal fade" id="newBFFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -239,8 +271,9 @@
 			$.post("/api/friends", newFriend, function(data) {
 				$("#bff").text(data.name);
 				$("#bffPhoto").attr("src", data.photoURL);
+				$("#newBFFModal").modal("toggle"); 
 			});
-			$("#newBFFModal").modal("toggle"); 
+			
 
 			$("#name").val("");
             $("#photo").val("");
