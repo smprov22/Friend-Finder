@@ -32,7 +32,7 @@ module.exports = function(app) {
        
        //PUSH user answers to friendsArray
        friends.push(user);
-       //DISPLAY modal showing user which friend they are closest with
+       //send match back to browser
        res.json(friends[bffIndex]);
     });
 }

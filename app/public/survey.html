@@ -7,6 +7,39 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Soccer Friend Finder - Survey</title>
+	<style>
+		body {
+			background-color: rgb(38, 119, 96);
+		}
+	
+		.container {
+			background-color: rgba(255, 255, 255, 0.6);
+			margin-top: 25px;
+			margin-bottom: 25px;
+			width: 60%;
+		}
+
+		#submitBtn {
+			margin-bottom: 15px;
+		}
+
+		.form-group {
+			width: 80%;
+			margin: 10px auto;
+		}
+
+		h1 {
+			text-align: center;
+			padding-top: 15px;
+		}
+
+		.container p {
+			text-align: center;
+			width: 80%;
+			margin: 10px auto;
+		}
+	</style>
+
 </head>
 <body>
     <div class="container content">
@@ -142,50 +175,53 @@
             </div>
         </form>
         <div class="text-center">
-			<button id="submitBtn" type="submit" class="btn btn-primary btn-lg">Submit</button>
+			<button id="submitBtn" type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newBFFModal">Submit</button>
         </div>
         
-        <!-- Modal after survey completion -->
-		<div id="newBFFModal" class="modal fade" role="dialog">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h3 class="modal-title">Your New Soccer BFF!</h1>
-					</div>
-					<div class="modal-body">
-						<h2 id="bestFriend"></h2>
-						<img id="bestFriendPhoto" src="#">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
+		<div class="modal fade" id="newBFFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h2 class="modal-title">Your New Soccer BFF!</h2>
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				  </button>
 				</div>
+				<div class="modal-body">
+					<h2 id="bff"></h2>
+					<img id="bffPhoto" src="#" width=250px>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			  </div>
 			</div>
-		</div>
-    </div>        
+		  </div>
+	</div>        
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
+</html>
 <script type="text/javascript">
 	$("#submitBtn").on("click", function(event) {
         event.preventDefault();
         //verify that user has entered all necessary information
-        var valid = true;
+        var complete = true;
        
         if ($("#name").val() === "" || $("#photo").val() === "") {
-            valid = false
+            complete = false
         } else if ($("#question1").val() === "empty" || $("#question2").val() === "empty" || $("#question3").val() === "empty" || $("#question4").val() === "empty" || $("#question5").val() === "empty" || $("#question6").val() === "empty" || $("#question7").val() === "empty" || $("#question8").val() === "empty" || $("#question9").val() === "empty" || $("#question10").val() === "empty") {
-            valid = false;
+            complete = false;
         }
 
-        if (valid === true) {
+        if (complete === true) {
             var newFriend = {
                 name: $("#name").val().trim(),
-                photo: $("#photo").val().trim(),
+                photoURL: $("#photo").val().trim(),
                 answers: [
                     $("#question1").val(),
                     $("#question2").val(),
@@ -200,19 +236,29 @@
                 ]
             };
 
-            var currentURL = window.location.origin;
-			// Ajax call for receiving response after POST req
-			$.post(currentURL + "/api/friends", newFriend, function(data) {
-				$("#bestFriend").text(data.name);
-				$("#bestFriendPhoto").attr("src", data.photo);
-                $("#newBFFModal").modal("toggle");
-            });
+			$.post("/api/friends", newFriend, function(data) {
+				$("#bff").text(data.name);
+				$("#bffPhoto").attr("src", data.photoURL);
+			});
+			$("#newBFFModal").modal("toggle"); 
+
+			$("#name").val("");
+            $("#photo").val("");
+            $("#question1").val("");
+            $("#question2").val("");
+            $("#question3").val("");
+            $("#question4").val("");
+            $("#question5").val("");
+            $("#question6").val("");
+            $("#question7").val("");
+            $("#question8").val("");
+            $("#question9").val("");
+            $("#question10").val("");
         } 
         else {
 			// If a required field is missing, show alert
-			alert("Survey is incomplete!");
+			alert("Please fill out all fields!");
 		}  
     })  
 
 </script>
-</html>
