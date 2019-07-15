@@ -2,6 +2,8 @@
 
 https://agile-mesa-30631.herokuapp.com/
 
+![Friend-finder](/app/images/friend-finder-screenshot.PNG)
+
 Inspired by the Women's World Cup that is currently happening, I created an app to match you with your Women's US Soccer BFF.  Answer a few questions and the app will tell you your soccer BFF!
 
 You can also click on the API and view all 10 of the possible matches.
